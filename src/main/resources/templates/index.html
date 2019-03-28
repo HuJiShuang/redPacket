@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抢红包</title>
+</head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<body>
+<p>欢迎来到强红包页面</p>
+<script>
+    $(document).ready(function () {
+        //模拟30000个异步请求，进行并发
+        var max = 900;
+        for(var i = 1;i <= max;i++){
+            //jQuery的post请求，请注意这是异步请求
+            $.ajax({
+                //请求抢id为1的红包
+                url:'/userRedPacket/grapRedPacketByRedis',
+                data:{redPacketId:5,userId:i},
+                success:function (result) {
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

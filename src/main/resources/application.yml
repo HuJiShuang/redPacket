@@ -1,0 +1,38 @@
+
+server:
+  port: 8088
+
+spring:
+  application:
+    name: redpacket
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/red_packet
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 20           #数据库连接池的最小维持连接数
+      initial-size: 5        #初始化连接数
+      max-total: 200          #最大连接数
+      max-wait-millis: 30000  #等待连接获取的最大超时时间
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        ###连接池最大连接数，使用负指代表没有限制
+        max-active: 100
+        ###连接池最大阻塞等待时间（使用负值代表没有限制）
+        max-wait: 20000
+        ###连接池最大空闲数
+        max-idle: 50
+    timeout: 10000
+
+mybatis:
+  type-aliases-package: edu.bit.hjs.entity
+  mapper-locations:
+    - classpath:mapper/**/*.xml
+
